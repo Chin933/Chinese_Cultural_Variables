@@ -1,6 +1,23 @@
 # Chinese Cultural Variables
 
-County- and prefecture-level datasets on historical Chinese cultural institutions and social structures, for use in empirical economics and social science research.
+Prefecture- and county-level datasets on historical Chinese cultural institutions and social structures, for use in empirical economics and social science research.
+
+---
+
+## Maps
+
+### Imperial Examination & Clan Density by Prefecture
+*Jinshi, Juren, Shengyuan, and Clan density (per million pop., 2010 base)*
+
+![Keju Density Map](maps/map_keju_density.png)
+
+### Protestant Missionary Presence, 1936
+
+![Protestant Missions Map](maps/map_protestant_1936.png)
+
+### Surname Concentration, Clan Genealogies & Ancestral Halls
+
+![China Cultural Map](maps/china_cultural_map.png)
 
 ---
 
@@ -9,22 +26,33 @@ County- and prefecture-level datasets on historical Chinese cultural institution
 ```
 Chinese_Cultural_Variables/
 ├── data/
-│   ├── jinshi_density.xlsx           # Imperial exam graduates (进士) density by county
+│   ├── jinshi_density.xlsx           # Imperial exam degree-holder density by prefecture
 │   ├── citang_ancestral_halls.xlsx   # Ancestral hall (祠堂) counts by county
 │   ├── clan_genealogies.csv          # Clan genealogy (族谱) records by county
 │   ├── protestant_missions_1936.xlsx # Protestant missionary presence, 1936
 │   └── surname_distribution_2005.csv # Surname diversity indices by prefecture, 2005
 └── maps/
-    └── china_cultural_map.png        # Geographic visualization
+    ├── map_keju_density.png          # Jinshi / Juren / Shengyuan / Clan density
+    ├── map_protestant_1936.png       # Protestant missionary locations
+    └── china_cultural_map.png        # Surname concentration + genealogies + ancestral halls
 ```
 
 ---
 
 ## Datasets
 
-### 1. Jinshi Density — `data/jinshi_density.xlsx`
+### 1. Imperial Examination Density — `data/jinshi_density.xlsx`
 
-County-level density of Jinshi (进士), i.e., successful candidates in China's imperial civil examination (*keju*, 科举) system. Higher values indicate greater historical exposure to the civil service examination culture.
+Prefecture-level (*地级市*) density of imperial civil examination (*keju*, 科举) degree-holders, normalised by 2010 population. Includes three degree tiers and clan strength:
+
+| Variable | Description |
+|----------|-------------|
+| `jinshipop` | Jinshi (进士) per million pop. — highest degree, metropolitan exam |
+| `jurenpop` | Juren (举人) per million pop. — provincial exam graduates |
+| `shengyuanpop` | Shengyuan (生员) per million pop. — prefectural/county exam graduates |
+| `clanpop` | Clan density per million pop. |
+| `lnjinshipop` / `lnjurenpop` / `lnshengyuanpop` / `lnclanpop` | Log-transformed versions |
+| `dialects` | Dialect group identifier |
 
 **Sources**
 - Chen, T., Kung, J. K. S., & Ma, C. (2020). Long live Keju! The persistent effects of China's civil examination system. *The Economic Journal*, 130(631), 2030–2064.
@@ -34,7 +62,7 @@ County-level density of Jinshi (进士), i.e., successful candidates in China's 
 
 ### 2. Ancestral Halls — `data/citang_ancestral_halls.xlsx`
 
-County-level data on ancestral halls (祠堂, *cítáng*). Ancestral halls are the central physical and ritual institution of the Chinese lineage/clan (*zú*, 族), commonly used as a proxy for clan organizational strength.
+County-level data on ancestral halls (祠堂, *cítáng*). Ancestral halls are the central physical and ritual institution of the Chinese lineage/clan (*zú*, 族), commonly used as a proxy for clan organisational strength.
 
 ---
 
@@ -54,7 +82,7 @@ County-level counts of extant clan genealogy records (族谱, *zúpǔ*). Unit of
 
 ### 4. Protestant Missions, 1936 — `data/protestant_missions_1936.xlsx`
 
-County- or prefecture-level data on Protestant missionary presence and activity in 1936.
+Individual-level records of Protestant missionaries active in China in 1936, with location and organisation information. Sheet 1 contains missionary-level entries; Sheet 2 aggregates counts by location.
 
 ---
 
@@ -75,12 +103,6 @@ Prefecture-level surname diversity data from 2005. Surname concentration (HHI) i
 
 ---
 
-## Maps
-
-**`maps/china_cultural_map.png`** — Geographic visualization of cultural variables across Chinese counties/prefectures.
-
----
-
 ## Notes
 
-All datasets are at the county (县) or prefecture (地级市) level unless otherwise noted. Administrative codes follow standard Chinese statistical conventions.
+Administrative codes follow standard Chinese statistical conventions. Population base for density variables is the 2010 census.
